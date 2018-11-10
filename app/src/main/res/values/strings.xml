@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">HoB</string>
+    <string name="nav_feed">Feed</string>
+    <string name="nav_notifications">Notifications</string>
+    <string name="nav_chats">Chats</string>
+    <string name="nav_profile">Profile</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
