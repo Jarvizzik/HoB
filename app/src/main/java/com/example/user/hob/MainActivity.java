@@ -1,15 +1,22 @@
 package com.example.user.hob;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.io.InputStream;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -23,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     public String user_surname;
     public String user_age;
     public String user_city;
+    public String user_url;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
         user_surname = intent.getStringExtra("surname");
         user_age = intent.getStringExtra("age");
         user_city = intent.getStringExtra("city");
+        user_url = intent.getStringExtra("url");
 
         mMainFrame = (FrameLayout) findViewById(R.id.main_frame);
         mMainNav = (BottomNavigationView) findViewById(R.id.main_nav);
@@ -68,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
     }
 
     private void setFragment(Fragment fragment) {

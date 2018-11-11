@@ -54,6 +54,7 @@ public class LoginActivity extends AppCompatActivity {
                                 String user_surname = jsonResponse.getString("surname");
                                 String user_age = jsonResponse.getString("age");
                                 String user_city = jsonResponse.getString("city");
+                                String user_url = jsonResponse.getString("url");
 
 
                                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
@@ -61,6 +62,7 @@ public class LoginActivity extends AppCompatActivity {
                                 intent.putExtra("surname", user_surname);
                                 intent.putExtra("age", user_age);
                                 intent.putExtra("city", user_city);
+                                intent.putExtra("url", user_url);
                                 LoginActivity.this.startActivity(intent);
                             } else {
                                 AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
