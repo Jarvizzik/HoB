@@ -50,10 +50,16 @@ public class LoginActivity extends AppCompatActivity {
                             boolean success = jsonResponse.getBoolean("success");
 
                             if (success) {
+                                String user_name = jsonResponse.getString("name");
+                                String user_surname = jsonResponse.getString("surname");
+                                String user_age = jsonResponse.getString("age");
                                 String user_city = jsonResponse.getString("city");
 
+
                                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                                intent.putExtra("username", user_username);
+                                intent.putExtra("name", user_name);
+                                intent.putExtra("surname", user_surname);
+                                intent.putExtra("age", user_age);
                                 intent.putExtra("city", user_city);
                                 LoginActivity.this.startActivity(intent);
                             } else {

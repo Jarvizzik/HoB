@@ -22,7 +22,7 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        final EditText name = (EditText) findViewById(R.id.name);
+        final EditText name = (EditText) findViewById(R.id.tvName);
         final EditText surname = (EditText) findViewById(R.id.surname);
         final EditText age = (EditText) findViewById(R.id.age);
         final EditText city = (EditText) findViewById(R.id.city);

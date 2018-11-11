@@ -15,17 +15,25 @@ public class MainActivity extends AppCompatActivity {
 
     private BottomNavigationView mMainNav;
     private FrameLayout mMainFrame;
-
     private FeedFragment feedFragment;
     private NotificationsFragment notificationsFragment;
     private ChatsFragment chatsFragment;
     private ProfileFragment profileFragment;
+    public String user_name;
+    public String user_surname;
+    public String user_age;
+    public String user_city;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Intent intent = getIntent();
+        user_name = intent.getStringExtra("name");
+        user_surname = intent.getStringExtra("surname");
+        user_age = intent.getStringExtra("age");
+        user_city = intent.getStringExtra("city");
 
         mMainFrame = (FrameLayout) findViewById(R.id.main_frame);
         mMainNav = (BottomNavigationView) findViewById(R.id.main_nav);
@@ -42,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
 
                 switch (menuItem.getItemId()){
-                    case R.id.nav_feed :
+                    case R.id.nav_feed:
                         setFragment(feedFragment);
                         return true;
                     case R.id.nav_notifications:
