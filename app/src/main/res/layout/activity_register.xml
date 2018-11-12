@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RegisterActivity">
+    tools:context=".activities.RegisterActivity">
 
     <ImageView
         android:id="@+id/imageView"
@@ -104,19 +104,12 @@
         android:text="Register" />
 
     <Button
-        android:id="@+id/btnUpload"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_toEndOf="@+id/register"
-        android:text="Upload" />
-
-    <Button
         android:id="@+id/btnChoose"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="58dp"
+        android:layout_marginStart="-8dp"
+        android:layout_marginTop="24dp"
         android:layout_toEndOf="@+id/register"
         android:text="Choose" />
 

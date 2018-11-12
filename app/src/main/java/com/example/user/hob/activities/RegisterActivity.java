@@ -1,4 +1,4 @@
-package com.example.user.hob;
+package com.example.user.hob.activities;
 
 import android.Manifest;
 import android.content.Intent;
@@ -19,11 +19,11 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.user.hob.R;
+import com.example.user.hob.requests.RegisterRequest;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -34,7 +34,7 @@ import java.io.InputStream;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    Button btnChoose,btnUpload;
+    Button btnChoose;
     ImageView imageView;
     Bitmap bitmap;
     final int CODE_GALLERY_REQUEST = 999;
@@ -51,7 +51,6 @@ public class RegisterActivity extends AppCompatActivity {
         final EditText password = (EditText) findViewById(R.id.password);
         final Button register = (Button) findViewById(R.id.register);
         btnChoose = (Button) findViewById(R.id.btnChoose);
-        btnUpload = (Button) findViewById(R.id.btnUpload);
         imageView = (ImageView) findViewById(R.id.imageView);
 
         btnChoose.setOnClickListener(new View.OnClickListener() {

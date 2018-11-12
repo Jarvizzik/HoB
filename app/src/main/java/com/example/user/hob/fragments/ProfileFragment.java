@@ -1,4 +1,4 @@
-package com.example.user.hob;
+package com.example.user.hob.fragments;
 
 
 import android.graphics.Bitmap;
@@ -6,16 +6,19 @@ import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.user.hob.R;
+import com.example.user.hob.activities.MainActivity;
+import com.squareup.picasso.Picasso;
+
 import java.io.InputStream;
-import java.net.URL;
 
 
 /**
@@ -27,8 +30,7 @@ public class ProfileFragment extends Fragment {
     private TextView tvSurname;
     private TextView tvAge;
     private TextView tvCity;
-    private ImageView ivUrl;
-
+    private ImageView imageView;
     public ProfileFragment() {
         // Required empty public constructor
     }
@@ -46,7 +48,6 @@ public class ProfileFragment extends Fragment {
         String city = "City: " + user.user_city;
         String url = user.user_url;
 
-        System.out.println("URLLLL = " + url);
 
         tvName = view.findViewById(R.id.tvName);
         tvName.setText(name);
@@ -56,34 +57,10 @@ public class ProfileFragment extends Fragment {
         tvAge.setText(age);
         tvCity = view.findViewById(R.id.tvCity);
         tvCity.setText(city);
-
-        new DownloadImageTask((ImageView) view.findViewById(R.id.imageView))
-                .execute(url);
+        imageView = (ImageView) view.findViewById(R.id.imageView);
+        Picasso.get().load(url)
+                .fit().centerCrop().into(imageView);
 
         return view;
-    }
-    private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
-        ImageView bmImage;
-
-        public DownloadImageTask(ImageView bmImage) {
-            this.bmImage = bmImage;
-        }
-
-        protected Bitmap doInBackground(String... urls) {
-            String urldisplay = urls[0];
-            Bitmap mIcon11 = null;
-            try {
-                InputStream in = new java.net.URL(urldisplay).openStream();
-                mIcon11 = BitmapFactory.decodeStream(in);
-            } catch (Exception e) {
-                Log.e("Error", e.getMessage());
-                e.printStackTrace();
-            }
-            return mIcon11;
-        }
-
-        protected void onPostExecute(Bitmap result) {
-            bmImage.setImageBitmap(result);
-        }
     }
 }

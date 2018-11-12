@@ -1,9 +1,8 @@
-package com.example.user.hob;
+package com.example.user.hob.activities;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
+import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
@@ -13,12 +12,27 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.TextView;
 
-import java.io.InputStream;
+import com.example.user.hob.Event;
+import com.example.user.hob.fragments.ChatsFragment;
+import com.example.user.hob.fragments.FeedFragment;
+import com.example.user.hob.fragments.NotificationsFragment;
+import com.example.user.hob.fragments.ProfileFragment;
+import com.example.user.hob.R;
+
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+
+    private String MY_LOG = "mylog";
+    public ArrayList<Event> eventList;
 
     private BottomNavigationView mMainNav;
     private FrameLayout mMainFrame;
@@ -43,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
         user_age = intent.getStringExtra("age");
         user_city = intent.getStringExtra("city");
         user_url = intent.getStringExtra("url");
-
+        eventList = intent.getParcelableArrayListExtra("event");
         mMainFrame = (FrameLayout) findViewById(R.id.main_frame);
         mMainNav = (BottomNavigationView) findViewById(R.id.main_nav);
 
@@ -77,7 +91,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-
     }
 
     private void setFragment(Fragment fragment) {
