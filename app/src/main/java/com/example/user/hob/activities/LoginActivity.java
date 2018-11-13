@@ -2,14 +2,18 @@ package com.example.user.hob.activities;
 
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -24,10 +28,16 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import br.com.simplepass.loading_button_lib.customViews.CircularProgressButton;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -40,7 +50,7 @@ public class LoginActivity extends AppCompatActivity {
 
         final EditText username = (EditText) findViewById(R.id.username);
         final EditText password = (EditText) findViewById(R.id.password);
-        final Button login = (Button) findViewById(R.id.login);
+        final CircularProgressButton login = (CircularProgressButton) findViewById(R.id.login);
         final TextView registerLink = (TextView) findViewById(R.id.registerHere);
 
         registerLink.setOnClickListener(new View.OnClickListener() {
@@ -55,31 +65,50 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 final String user_username = username.getText().toString();
                 final String user_password = password.getText().toString();
-
+                login.startAnimation();
+                new ParseAllEvents().execute();
                 // Response received from the server
                 Response.Listener<String> responseListener = new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         try {
-                            JSONObject jsonResponse = new JSONObject(response);
+                            final JSONObject jsonResponse = new JSONObject(response);
                             boolean success = jsonResponse.getBoolean("success");
 
                             if (success) {
-                                String user_name = jsonResponse.getString("name");
-                                String user_surname = jsonResponse.getString("surname");
-                                String user_age = jsonResponse.getString("age");
-                                String user_city = jsonResponse.getString("city");
-                                String user_url = jsonResponse.getString("url");
+                                AsyncTask<String,String,String> waiter = new AsyncTask<String, String, String>() {
+                                    @Override
+                                    protected String doInBackground(String... voids) {
+                                        try{
+                                            String user_name = jsonResponse.getString("name");
+                                            String user_surname = jsonResponse.getString("surname");
+                                            String user_age = jsonResponse.getString("age");
+                                            String user_city = jsonResponse.getString("city");
+                                            String user_url = jsonResponse.getString("url");
 
 
-                                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                                intent.putExtra("name", user_name);
-                                intent.putExtra("surname", user_surname);
-                                intent.putExtra("age", user_age);
-                                intent.putExtra("city", user_city);
-                                intent.putExtra("url", user_url);
-                                intent.putParcelableArrayListExtra("event",(ArrayList<? extends Parcelable>) eventList);
-                                LoginActivity.this.startActivity(intent);
+                                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                            intent.putExtra("name", user_name);
+                                            intent.putExtra("surname", user_surname);
+                                            intent.putExtra("age", user_age);
+                                            intent.putExtra("city", user_city);
+                                            intent.putExtra("url", user_url);
+                                            intent.putParcelableArrayListExtra("event",(ArrayList<? extends Parcelable>) eventList);
+                                            LoginActivity.this.startActivity(intent);
+                                        } catch (JSONException e) {
+                                            e.printStackTrace();
+                                        }
+                                        return "success";
+                                    }
+                                    @Override
+                                    protected void onPostExecute(String s){
+                                        if(s.equals("success")){
+                                            Toast.makeText(LoginActivity.this, "Welcome " + user_username, Toast.LENGTH_SHORT).show();
+                                            login.revertAnimation();
+                                        }
+                                    }
+                                };
+                                waiter.execute();
                             } else {
                                 AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
                                 builder.setMessage("Login Failed")
@@ -91,6 +120,7 @@ public class LoginActivity extends AppCompatActivity {
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
+
                     }
                 };
 
@@ -99,13 +129,12 @@ public class LoginActivity extends AppCompatActivity {
                 queue.add(loginRequest);
             }
         });
-        new ParseAllEvents().execute();
     }
     class ParseAllEvents extends AsyncTask<Void, Void, Void> {
 
         @Override
         protected Void doInBackground(Void... voids) {
-            int amountOfPages = 14;
+            int amountOfPages = 1;
             for(int i = 1;i <= amountOfPages; i++){
                 String urlOfPage = "https://dou.ua/calendar/page-" + i;
                 itemEvents(urlOfPage);
@@ -120,6 +149,7 @@ public class LoginActivity extends AppCompatActivity {
             try {
                 String image, name, date,location, price, content, more, page;
                 String members;
+                int n = 0;
                 Document doc = Jsoup.connect(url).get();
                 Elements elements = doc.select("div[class=col50 m-cola] > article[class=b-postcard]");
                 for(Element element: elements){
@@ -131,13 +161,18 @@ public class LoginActivity extends AppCompatActivity {
                     location = element.select("div[class=when-and-where]").text();
                     location = location.replace(date,"").replace(price,"");
                     content = element.select("p[class=b-typo]").text();
+                    if(content.length() < 120)
+                        n = content.length();
+                    else
+                        n = 120;
+                    content = content.substring(0,n)+"...";
                     more = element.select("div[class=more]").text();
                     members = element.select("div[class=more] > span").text();
                     more = more.replace(members,"");
                     page = element.select("div[class=title] > a").attr("href");
 
                     //Log.d(MY_LOG,image + " ," + name + " ,"+ date+" ," + location+" ," + price + " ,"+ content + " ,"+ more + " ,"+page+"!!!!!");
-
+                    Log.d(MY_LOG,image +"!!!");
                     eventList.add(new Event(image, name, date,location, price, content, more, page));
 
                 }

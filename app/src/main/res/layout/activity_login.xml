@@ -32,14 +32,17 @@
         android:inputType="textPassword"
         android:text="admin" />
 
-    <Button
+    <br.com.simplepass.loading_button_lib.customViews.CircularProgressButton
         android:id="@+id/login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="169dp"
-        android:text="Login" />
+        android:text="Login"
+        app:spinning_bar_color="#FFF"
+        app:spinning_bar_padding="6dp"
+        app:spinning_bar_width="4dp"/>
 
     <TextView
         android:id="@+id/registerHere"

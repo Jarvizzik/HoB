@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.FrameLayout;
 
 import com.example.user.hob.Event;
@@ -25,13 +26,19 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
     private String MY_LOG = "mylog";
+    public String JSON_STRING;
     public ArrayList<Event> eventList;
 
     private BottomNavigationView mMainNav;
@@ -50,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        new BackgroundTask().execute();
         Intent intent = getIntent();
         user_name = intent.getStringExtra("name");
         user_surname = intent.getStringExtra("surname");
@@ -92,7 +99,35 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+    private class BackgroundTask extends AsyncTask<Void, Void, String> {
+        String JSON_URL;
+        @Override
+        protected void onPreExecute() {
+            JSON_URL ="https://jarvizz.000webhostapp.com/json_get_data.php";
+        }
 
+        @Override
+        protected String doInBackground(Void... params) {
+            try {
+                URL url = new URL(JSON_URL);
+                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+                InputStream inputStream = httpURLConnection.getInputStream();
+                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+                StringBuilder stringBuilder = new StringBuilder();
+                while((JSON_STRING = bufferedReader.readLine()) != null){
+                    stringBuilder.append(JSON_STRING);
+                }
+                JSON_STRING = stringBuilder.toString().trim();
+                bufferedReader.close();
+                inputStream.close();
+                httpURLConnection.disconnect();
+                return JSON_STRING;
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+    }
     private void setFragment(Fragment fragment) {
 
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
