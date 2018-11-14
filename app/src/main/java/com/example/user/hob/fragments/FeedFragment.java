@@ -8,19 +8,25 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.user.hob.Event;
 import com.example.user.hob.R;
+import com.example.user.hob.activities.LoginActivity;
 import com.example.user.hob.activities.MainActivity;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -28,9 +34,14 @@ import java.util.List;
  * A simple {@link Fragment} subclass.
  */
 public class FeedFragment extends Fragment {
+    private MainActivity feed;
+    private RVAdapter adapter;
     private RecyclerView recyclerView;
     private String MY_LOG = "mylog";
     private GridLayoutManager manager;
+    private EditText editText;
+    private ArrayList<Event> searchList = new ArrayList<>();
+    String[] items;
     public FeedFragment() {
         // Required empty public constructor
     }
@@ -44,16 +55,62 @@ public class FeedFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        feed = (MainActivity) getActivity();
         View view =  inflater.inflate(R.layout.fragment_feed, container, false);
-        MainActivity feed = (MainActivity) getActivity();
-        Log.d(MY_LOG,String.valueOf(feed.eventList.size()));
-        System.out.println("AFAFAFAF" + String.valueOf(feed.eventList.size()));
-        System.out.println(feed.eventList.toString());
+        int i = 0;
+        for(Event event: feed.eventList){
+                System.out.println("Event Name #" + (i+1) + " : " + event.getEventName());
+                i++;
+        }
         recyclerView = view.findViewById(R.id.rv);
-        RVAdapter adapter = new RVAdapter(feed.eventList);
-        recyclerView.setAdapter(adapter);
+        editText=(EditText) view.findViewById(R.id.search);
+        initList();
 
+        editText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(s.toString().equals("")){
+                    // reset listview
+                    initList();
+                } else {
+                    // perform search
+                    searchItem(s.toString());
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+
+        });
+        Log.d(MY_LOG,String.valueOf(feed.eventList.size()));
         return view;
+    }
+    public void searchItem(String textToSearch){
+        ArrayList<Event> eventsToRemove = new ArrayList<>();
+        searchList.clear();
+        for(int i = 0;i<feed.eventList.size();i++)
+            searchList.add(feed.eventList.get(i));
+        for(Event event:feed.eventList){
+            if(!event.getEventName().toLowerCase().contains(textToSearch.toLowerCase())){
+                eventsToRemove.add(event);
+            }
+        }
+        Log.d(MY_LOG, String.valueOf(feed.eventList.size()));
+        searchList.removeAll(eventsToRemove);
+        adapter.notifyDataSetChanged();
+    }
+    public void initList(){
+        searchList.clear();
+        for(int i = 0;i<feed.eventList.size();i++)
+            searchList.add(feed.eventList.get(i));
+        Log.d(MY_LOG, String.valueOf(feed.eventList.size()));
+        adapter = new RVAdapter(searchList);
+        recyclerView.setAdapter(adapter);
     }
     public class RVAdapter extends RecyclerView.Adapter<RVAdapter.EventViewHolder>{
 

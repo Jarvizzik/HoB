@@ -43,6 +43,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private String MY_LOG = "mylog";
     public List<Event> eventList = new ArrayList<>();
+    public String names;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,10 +64,9 @@ public class LoginActivity extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                login.startAnimation();
                 final String user_username = username.getText().toString();
                 final String user_password = password.getText().toString();
-                login.startAnimation();
-                new ParseAllEvents().execute();
                 // Response received from the server
                 Response.Listener<String> responseListener = new Response.Listener<String>() {
                     @Override
@@ -74,9 +74,10 @@ public class LoginActivity extends AppCompatActivity {
                         try {
                             final JSONObject jsonResponse = new JSONObject(response);
                             boolean success = jsonResponse.getBoolean("success");
-
+                            System.out.println("success = " + success);
                             if (success) {
-                                AsyncTask<String,String,String> waiter = new AsyncTask<String, String, String>() {
+                                new ParseAllEvents().execute();
+                                AsyncTask<String,String,String> waiter1 = new AsyncTask<String, String, String>() {
                                     @Override
                                     protected String doInBackground(String... voids) {
                                         try{
@@ -93,6 +94,7 @@ public class LoginActivity extends AppCompatActivity {
                                             intent.putExtra("age", user_age);
                                             intent.putExtra("city", user_city);
                                             intent.putExtra("url", user_url);
+                                            intent.putExtra("names",names);
                                             intent.putParcelableArrayListExtra("event",(ArrayList<? extends Parcelable>) eventList);
                                             LoginActivity.this.startActivity(intent);
                                         } catch (JSONException e) {
@@ -108,15 +110,15 @@ public class LoginActivity extends AppCompatActivity {
                                         }
                                     }
                                 };
-                                waiter.execute();
+                                waiter1.execute();
                             } else {
+                                login.revertAnimation();
                                 AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
                                 builder.setMessage("Login Failed")
                                         .setNegativeButton("Retry", null)
                                         .create()
                                         .show();
                             }
-
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -155,16 +157,17 @@ public class LoginActivity extends AppCompatActivity {
                 for(Element element: elements){
                     image = element.select("img").attr("src");
                     name = element.select("h2[class=title] > a").text();
+                    names += name + ",";
                     date = element.select("div[class=when-and-where] > span[class=date]").text();
                     price = element.select("div[class=when-and-where] > span").text();
                     price = price.replace(date,"");
                     location = element.select("div[class=when-and-where]").text();
                     location = location.replace(date,"").replace(price,"");
                     content = element.select("p[class=b-typo]").text();
-                    if(content.length() < 120)
+                    if(content.length() < 115)
                         n = content.length();
                     else
-                        n = 120;
+                        n = 115;
                     content = content.substring(0,n)+"...";
                     more = element.select("div[class=more]").text();
                     members = element.select("div[class=more] > span").text();
@@ -172,7 +175,7 @@ public class LoginActivity extends AppCompatActivity {
                     page = element.select("div[class=title] > a").attr("href");
 
                     //Log.d(MY_LOG,image + " ," + name + " ,"+ date+" ," + location+" ," + price + " ,"+ content + " ,"+ more + " ,"+page+"!!!!!");
-                    Log.d(MY_LOG,image +"!!!");
+                    //Log.d(MY_LOG,image +"!!!");
                     eventList.add(new Event(image, name, date,location, price, content, more, page));
 
                 }

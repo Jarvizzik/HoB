@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.MainActivity"
-    android:background="@color/colorWhiteTransparent">
+    android:background="@color/colorWhiteTransparent"
+    tools:context=".activities.MainActivity">
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/main_nav"

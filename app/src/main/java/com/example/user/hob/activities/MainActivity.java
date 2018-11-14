@@ -52,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
     public String user_age;
     public String user_city;
     public String user_url;
+    public String event_names;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
         user_age = intent.getStringExtra("age");
         user_city = intent.getStringExtra("city");
         user_url = intent.getStringExtra("url");
+        event_names = intent.getStringExtra("names");
         eventList = intent.getParcelableArrayListExtra("event");
         mMainFrame = (FrameLayout) findViewById(R.id.main_frame);
         mMainNav = (BottomNavigationView) findViewById(R.id.main_nav);
