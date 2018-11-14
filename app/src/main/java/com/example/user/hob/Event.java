@@ -131,11 +131,4 @@ public class Event implements Parcelable {
         parcel.writeStringArray(new String[] {eventImage, eventName, eventDate,eventLocation, eventPrice, eventContent, eventMore, eventPage});
 
     }
-    @Override
-    public boolean equals(Object obj) {
-        if (obj != null && (obj instanceof Event)) {
-            return ((Event) obj).getEventMore().equalsIgnoreCase(eventMore);
-        }
-        return false;
-    }
 }

@@ -1,6 +1,7 @@
 package com.example.user.hob.fragments;
 
 
+import android.content.Context;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -14,6 +15,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -57,15 +59,9 @@ public class FeedFragment extends Fragment {
         // Inflate the layout for this fragment
         feed = (MainActivity) getActivity();
         View view =  inflater.inflate(R.layout.fragment_feed, container, false);
-        int i = 0;
-        for(Event event: feed.eventList){
-                System.out.println("Event Name #" + (i+1) + " : " + event.getEventName());
-                i++;
-        }
         recyclerView = view.findViewById(R.id.rv);
         editText=(EditText) view.findViewById(R.id.search);
         initList();
-
         editText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -87,7 +83,6 @@ public class FeedFragment extends Fragment {
             }
 
         });
-        Log.d(MY_LOG,String.valueOf(feed.eventList.size()));
         return view;
     }
     public void searchItem(String textToSearch){
@@ -100,7 +95,6 @@ public class FeedFragment extends Fragment {
                 eventsToRemove.add(event);
             }
         }
-        Log.d(MY_LOG, String.valueOf(feed.eventList.size()));
         searchList.removeAll(eventsToRemove);
         adapter.notifyDataSetChanged();
     }
@@ -108,7 +102,6 @@ public class FeedFragment extends Fragment {
         searchList.clear();
         for(int i = 0;i<feed.eventList.size();i++)
             searchList.add(feed.eventList.get(i));
-        Log.d(MY_LOG, String.valueOf(feed.eventList.size()));
         adapter = new RVAdapter(searchList);
         recyclerView.setAdapter(adapter);
     }

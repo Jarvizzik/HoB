@@ -7,9 +7,9 @@
         android:icon="@drawable/baseline_list_black_24dp"
         android:title="@string/nav_feed" />
     <item
-        android:id="@+id/nav_notifications"
-        android:icon="@drawable/baseline_notifications_black_24dp"
-        android:title="@string/nav_notifications" />
+        android:id="@+id/nav_users"
+        android:icon="@drawable/baseline_supervised_user_circle_black_24dp"
+        android:title="@string/nav_users" />
     <item
         android:id="@+id/nav_chats"
         android:icon="@drawable/baseline_chat_black_24dp"

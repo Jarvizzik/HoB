@@ -3,13 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.FeedFragment">
+    tools:context=".fragments.FeedFragment"
+    android:focusableInTouchMode="true">
 
     <!-- TODO: Update blank fragment layout -->
     <EditText
         android:id="@+id/search"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:windowSoftInputMode="stateAlwaysHidden"
         android:hint="Search"
         />
 

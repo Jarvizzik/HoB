@@ -3,15 +3,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.NotificationsFragment">
+    tools:context=".fragments.UsersFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:id="@+id/json"
+
+    <EditText
+        android:id="@+id/search2"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="Search" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="10dp"
-        android:text="Notifications"
-        android:textSize="20sp" />
+        android:layout_marginTop="50dp">
+
+    </android.support.v7.widget.RecyclerView>
 
 </FrameLayout>
