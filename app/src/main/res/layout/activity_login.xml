@@ -4,7 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorWhiteTransparent"
     tools:context=".activities.LoginActivity">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="131dp"
+        android:layout_marginTop="50dp"
+        android:text="KiT"
+        android:textColor="@color/colorPrimary"
+        android:textSize="60sp" />
 
     <EditText
         android:id="@+id/username"
@@ -34,22 +47,23 @@
 
     <br.com.simplepass.loading_button_lib.customViews.CircularProgressButton
         android:id="@+id/login"
-        android:layout_width="wrap_content"
+        android:layout_width="153dp"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="169dp"
+        android:layout_marginBottom="249dp"
         android:text="Login"
         app:spinning_bar_color="#FFF"
         app:spinning_bar_padding="6dp"
-        app:spinning_bar_width="4dp"/>
+        app:spinning_bar_width="4dp" />
 
     <TextView
         android:id="@+id/registerHere"
-        android:layout_width="107dp"
-        android:layout_height="wrap_content"
+        android:layout_width="106dp"
+        android:layout_height="34dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="137dp"
-        android:text="Register here" />
+        android:layout_marginBottom="190dp"
+        android:text="@string/register_here"
+        android:textSize="16sp" />
 </RelativeLayout>

@@ -131,7 +131,7 @@ public class FeedFragment extends Fragment {
             holder.eventPage.setText(events.get(position).getEventPage());
 
             Picasso.get().load(events.get(position).getEventImage())
-                    .fit().centerCrop()
+                    .fit()
                     .into(holder.eventImage);
         }
 

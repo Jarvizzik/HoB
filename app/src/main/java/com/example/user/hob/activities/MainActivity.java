@@ -127,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
                     String city = (String) jsonObject.get("city");
                     String username = (String) jsonObject.get("username");
                     String imageUrl = (String) jsonObject.get("url");
-                    Log.d(MY_LOG,"USER #"+ (i+1) + " : " + name + " , " + surname + " , " + age + " , " + city + " , " + imageUrl + " , " + username +" !!!!");
+                    //Log.d(MY_LOG,"USER #"+ (i+1) + " : " + name + " , " + surname + " , " + age + " , " + city + " , " + imageUrl + " , " + username +" !!!!");
                     userList.add(new User(name,surname,age,city,imageUrl,username));
                 }
 

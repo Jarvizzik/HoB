@@ -17,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.user.hob.R;
+import com.example.user.hob.RoundedCornersTransform;
 import com.example.user.hob.User;
 import com.example.user.hob.activities.MainActivity;
 import com.squareup.picasso.Picasso;
@@ -120,7 +121,7 @@ public class UsersFragment extends Fragment {
             holder.userName.setText(users.get(position).getName()+" " + users.get(position).getSurname());
 
             Picasso.get().load(users.get(position).getUrl())
-                    .fit().centerCrop()
+                    .fit().transform(new RoundedCornersTransform())
                     .into(holder.imageUser);
         }
 

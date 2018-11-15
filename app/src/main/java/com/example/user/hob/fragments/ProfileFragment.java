@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.user.hob.R;
+import com.example.user.hob.RoundedCornersTransform;
 import com.example.user.hob.activities.MainActivity;
 import com.squareup.picasso.Picasso;
 
@@ -59,7 +60,7 @@ public class ProfileFragment extends Fragment {
         tvCity.setText(city);
         imageView = (ImageView) view.findViewById(R.id.imageView);
         Picasso.get().load(url)
-                .fit().centerCrop().into(imageView);
+                .fit().transform(new RoundedCornersTransform()).into(imageView);
 
         return view;
     }
