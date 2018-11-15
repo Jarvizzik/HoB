@@ -1,25 +1,18 @@
-package com.example.user.hob.fragments;
+package com.example.user.kit.fragments;
 
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.user.hob.R;
-import com.example.user.hob.RoundedCornersTransform;
-import com.example.user.hob.activities.MainActivity;
+import com.example.user.kit.R;
+import com.example.user.kit.transformations.RoundedCornersTransform;
+import com.example.user.kit.activities.MainActivity;
 import com.squareup.picasso.Picasso;
-
-import java.io.InputStream;
 
 
 /**

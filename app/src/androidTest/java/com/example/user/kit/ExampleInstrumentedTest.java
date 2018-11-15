@@ -1,4 +1,4 @@
-package com.example.user.hob;
+package com.example.user.kit;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.example.user.hob", appContext.getPackageName());
+        assertEquals("com.example.user.kit", appContext.getPackageName());
     }
 }

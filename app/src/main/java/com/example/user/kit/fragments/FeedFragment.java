@@ -1,8 +1,6 @@
-package com.example.user.hob.fragments;
+package com.example.user.kit.fragments;
 
 
-import android.content.Context;
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -11,24 +9,19 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.user.hob.Event;
-import com.example.user.hob.R;
-import com.example.user.hob.activities.LoginActivity;
-import com.example.user.hob.activities.MainActivity;
+import com.example.user.kit.Event;
+import com.example.user.kit.R;
+import com.example.user.kit.activities.MainActivity;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 

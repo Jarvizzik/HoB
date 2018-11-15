@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">HoB</string>
+    <string name="app_name">KiT</string>
     <string name="nav_feed">Feed</string>
     <string name="nav_users">Users</string>
     <string name="register_here"><u>Register here</u></string>

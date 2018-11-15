@@ -1,4 +1,4 @@
-package com.example.user.hob.fragments;
+package com.example.user.kit.fragments;
 
 
 import android.os.Bundle;
@@ -7,7 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.user.hob.R;
+import com.example.user.kit.R;
 
 
 /**

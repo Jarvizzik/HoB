@@ -1,4 +1,4 @@
-package com.example.user.hob.activities;
+package com.example.user.kit.activities;
 
 import android.Manifest;
 import android.content.Intent;
@@ -22,8 +22,8 @@ import android.widget.Toast;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
-import com.example.user.hob.R;
-import com.example.user.hob.requests.RegisterRequest;
+import com.example.user.kit.R;
+import com.example.user.kit.requests.RegisterRequest;
 
 import org.json.JSONException;
 import org.json.JSONObject;

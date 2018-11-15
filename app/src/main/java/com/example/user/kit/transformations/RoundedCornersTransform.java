@@ -1,4 +1,4 @@
-package com.example.user.hob;
+package com.example.user.kit.transformations;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapShader;
@@ -7,9 +7,6 @@ import android.graphics.Paint;
 
 import com.squareup.picasso.Transformation;
 
-/**
- * Created by julian on 13/6/21.
- */
 public class RoundedCornersTransform implements Transformation {
     @Override
     public Bitmap transform(Bitmap source) {

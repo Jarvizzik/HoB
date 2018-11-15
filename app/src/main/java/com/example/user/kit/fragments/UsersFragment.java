@@ -1,4 +1,4 @@
-package com.example.user.hob.fragments;
+package com.example.user.kit.fragments;
 
 
 import android.os.Bundle;
@@ -16,10 +16,10 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.user.hob.R;
-import com.example.user.hob.RoundedCornersTransform;
-import com.example.user.hob.User;
-import com.example.user.hob.activities.MainActivity;
+import com.example.user.kit.R;
+import com.example.user.kit.transformations.RoundedCornersTransform;
+import com.example.user.kit.User;
+import com.example.user.kit.activities.MainActivity;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package com.example.user.hob;
+package com.example.user.kit;
 
 public class User {
     String name;

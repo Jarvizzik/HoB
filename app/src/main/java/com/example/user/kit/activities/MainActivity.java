@@ -1,4 +1,4 @@
-package com.example.user.hob.activities;
+package com.example.user.kit.activities;
 
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -8,17 +8,16 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 
-import com.example.user.hob.Event;
-import com.example.user.hob.User;
-import com.example.user.hob.fragments.ChatsFragment;
-import com.example.user.hob.fragments.FeedFragment;
-import com.example.user.hob.fragments.UsersFragment;
-import com.example.user.hob.fragments.ProfileFragment;
-import com.example.user.hob.R;
+import com.example.user.kit.Event;
+import com.example.user.kit.User;
+import com.example.user.kit.fragments.ChatsFragment;
+import com.example.user.kit.fragments.FeedFragment;
+import com.example.user.kit.fragments.UsersFragment;
+import com.example.user.kit.fragments.ProfileFragment;
+import com.example.user.kit.R;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
