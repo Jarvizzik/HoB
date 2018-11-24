@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
@@ -16,7 +17,7 @@ import android.widget.Toast;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
-import com.example.user.kit.Event;
+import com.example.user.kit.models.Event;
 import com.example.user.kit.requests.LoginRequest;
 import com.example.user.kit.R;
 
@@ -61,6 +62,7 @@ public class LoginActivity extends AppCompatActivity {
         final EditText username = (EditText) findViewById(R.id.username);
         final EditText password = (EditText) findViewById(R.id.password);
         final CircularProgressButton login = (CircularProgressButton) findViewById(R.id.login);
+        login.setInitialCornerRadius(50);
         final TextView registerLink = (TextView) findViewById(R.id.registerHere);
 
         registerLink.setOnClickListener(new View.OnClickListener() {
@@ -145,9 +147,9 @@ public class LoginActivity extends AppCompatActivity {
 
         @Override
         protected Void doInBackground(Void... voids) {
-            int amountOfPages = 1;
+            int amountOfPages = 2;
             for(int i = 1;i <= amountOfPages; i++){
-                String urlOfPage = "https://dou.ua/calendar/page-" + i;
+                String urlOfPage = "https://dou.ua/calendar/city/Львов/" + i;
                 itemEvents(urlOfPage);
             }
             System.out.println(eventList.toString());
@@ -164,7 +166,8 @@ public class LoginActivity extends AppCompatActivity {
                 Document doc = Jsoup.connect(url).get();
                 Elements elements = doc.select("div[class=col50 m-cola] > article[class=b-postcard]");
                 for(Element element: elements){
-                    image = element.select("img").attr("src");
+                    image = element.select("img").attr("srcset");
+                    image = image.substring(0,image.length()-5);
                     name = element.select("h2[class=title] > a").text();
                     names += name + ",";
                     date = element.select("div[class=when-and-where] > span[class=date]").text();
@@ -181,7 +184,7 @@ public class LoginActivity extends AppCompatActivity {
                     more = element.select("div[class=more]").text();
                     members = element.select("div[class=more] > span").text();
                     more = more.replace(members,"");
-                    page = element.select("div[class=title] > a").attr("href");
+                    page = element.select("h2[class=title] > a").attr("href");
 
                     //Log.d(MY_LOG,image + " ," + name + " ,"+ date+" ," + location+" ," + price + " ,"+ content + " ,"+ more + " ,"+page+"!!!!!");
                     //Log.d(MY_LOG,image +"!!!");

@@ -1,4 +1,4 @@
-package com.example.user.kit;
+package com.example.user.kit.models;
 
 public class User {
     String name;

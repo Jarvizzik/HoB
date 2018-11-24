@@ -12,13 +12,15 @@
         android:layout_marginRight="40dp"
         android:layout_marginTop="20dp"
         android:layout_marginLeft="40dp">
+
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="120dp"
             android:layout_height="120dp"
             android:layout_marginStart="40dp"
             android:scaleType="fitCenter"
-            app:srcCompat="@android:drawable/sym_def_app_icon" />
+            android:tintMode="@color/colorWhite"
+            app:srcCompat="@drawable/upload" />
 
         <Button
             android:id="@+id/btnChoose"
@@ -216,17 +218,16 @@
             <Button
                 android:id="@+id/register"
                 android:layout_width="wrap_content"
-                android:layout_height="40dp"
+                android:layout_height="35dp"
                 android:layout_below="@+id/lineLay2"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="9dp"
                 android:background="@drawable/btn_bg"
                 android:fontFamily="sans-serif-medium"
                 android:paddingLeft="70dp"
                 android:paddingRight="70dp"
                 android:text="Register"
-                android:textColor="@color/colorWhite"
-                />
+                android:textColor="@color/colorWhite" />
 
         </RelativeLayout>
 
