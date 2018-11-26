@@ -3,6 +3,5 @@
     <string name="nav_feed">Feed</string>
     <string name="nav_users">Users</string>
     <string name="register_here"><u>Register here</u></string>
-    <string name="nav_chats">Chats</string>
     <string name="nav_profile">Profile</string>
 </resources>

@@ -13,12 +13,12 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="9dp"
         android:layout_marginRight="4dp"
+        android:backgroundTint="@color/colorPrimary"
         android:drawableLeft="@drawable/baseline_search_black_24dp"
         android:drawablePadding="10dp"
         android:drawableTint="@color/colorPrimary"
         android:hint="Search"
-        android:textColor="@color/colorPrimary"
-        android:backgroundTint="@color/colorPrimary" />
+        android:textColor="@color/colorBlue" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv2"

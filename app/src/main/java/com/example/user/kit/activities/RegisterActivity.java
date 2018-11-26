@@ -34,7 +34,7 @@ import java.io.InputStream;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    Button btnChoose;
+    ImageView choose;
     ImageView imageView;
     Bitmap bitmap;
     final int CODE_GALLERY_REQUEST = 999;
@@ -50,10 +50,10 @@ public class RegisterActivity extends AppCompatActivity {
         final EditText username = (EditText) findViewById(R.id.username);
         final EditText password = (EditText) findViewById(R.id.password);
         final Button register = (Button) findViewById(R.id.register);
-        btnChoose = (Button) findViewById(R.id.btnChoose);
+        choose = (ImageView) findViewById(R.id.imageView);
         imageView = (ImageView) findViewById(R.id.imageView);
 
-        btnChoose.setOnClickListener(new View.OnClickListener() {
+        choose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ActivityCompat.requestPermissions(

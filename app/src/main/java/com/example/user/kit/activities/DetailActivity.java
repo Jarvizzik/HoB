@@ -24,6 +24,7 @@ public class DetailActivity extends AppCompatActivity {
     private ImageView eventImage;
     private TextView eventInfo;
     private TextView eventDetail;
+    private TextView eventTag;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,9 +34,11 @@ public class DetailActivity extends AppCompatActivity {
         eventImage = findViewById(R.id.eventImage);
         eventInfo = findViewById(R.id.eventInfo);
         eventDetail = findViewById(R.id.eventDetail);
+        eventTag = findViewById(R.id.eventTag);
         page = getIntent().getStringExtra("page");
         Log.d(MY_LOG, page);
         eventName.setText(getIntent().getStringExtra("name"));
+        eventTag.setText(getIntent().getStringExtra("tag"));
         new EventLoad().execute();
     }
 

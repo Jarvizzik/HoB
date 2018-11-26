@@ -23,7 +23,8 @@
         <activity android:name=".activities.RegisterActivity" />
         <activity android:name=".activities.MainActivity" />
         <activity android:name=".activities.DetailActivity" />
-        <activity android:name=".activities.SecondActivity"></activity>
+        <activity android:name=".activities.SecondActivity" />
+        <activity android:name=".activities.UserProfileActivity"></activity>
     </application>
 
 </manifest>

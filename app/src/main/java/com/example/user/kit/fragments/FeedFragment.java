@@ -130,6 +130,7 @@ public class FeedFragment extends Fragment {
                 intent.putExtra("page",events.get(itemPosition).getEventPage());
                 intent.putExtra("name",events.get(itemPosition).getEventName());
                 intent.putExtra("image",events.get(itemPosition).getEventImage());
+                intent.putExtra("tag",events.get(itemPosition).getEventMore());
                 startActivity(intent);
             }
         };

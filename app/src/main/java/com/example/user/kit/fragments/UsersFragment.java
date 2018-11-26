@@ -1,6 +1,7 @@
 package com.example.user.kit.fragments;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -17,6 +18,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.user.kit.R;
+import com.example.user.kit.activities.DetailActivity;
+import com.example.user.kit.activities.UserProfileActivity;
 import com.example.user.kit.transformations.RoundedCornersTransform;
 import com.example.user.kit.models.User;
 import com.example.user.kit.activities.MainActivity;
@@ -108,11 +111,25 @@ public class UsersFragment extends Fragment {
         public RVAdapter2(List<User> users) {
             this.users = users;
         }
+        private final View.OnClickListener onClickListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int itemPosition = recyclerView.getChildLayoutPosition(v);
+                //Log.d(MY_LOG, String.valueOf(itemPosition));
+                Intent intent = new Intent(getActivity(), UserProfileActivity.class);
+                intent.putExtra("info",users.get(itemPosition).getName()+
+                        " " + users.get(itemPosition).getSurname() + ", " + users.get(itemPosition).getAge());
+                intent.putExtra("city",users.get(itemPosition).getCity());
+                intent.putExtra("image",users.get(itemPosition).getUrl());
+                startActivity(intent);
+            }
+        };
         @NonNull
         @Override
         public UsersFragment.RVAdapter2.UserViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
             View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.user_card_view,viewGroup,false);
             UsersFragment.RVAdapter2.UserViewHolder userViewHolder = new UsersFragment.RVAdapter2.UserViewHolder(v);
+            v.setOnClickListener(onClickListener);
             return userViewHolder;
         }
 

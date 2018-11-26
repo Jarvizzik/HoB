@@ -6,32 +6,23 @@
     android:layout_height="match_parent"
     android:background="@drawable/grad_bg"
     tools:context=".activities.RegisterActivity">
+
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="40dp"
-        android:layout_marginTop="70dp"
-        android:layout_marginLeft="40dp">
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="40dp">
 
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="120dp"
             android:layout_height="120dp"
-            android:layout_marginStart="40dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerInParent="true"
             android:scaleType="fitCenter"
             android:tintMode="@color/colorWhite"
             app:srcCompat="@drawable/userphoto" />
-
-        <Button
-            android:id="@+id/btnChoose"
-            android:layout_width="100dp"
-            android:layout_height="40dp"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="200dp"
-            android:layout_marginTop="40dp"
-            android:background="@drawable/btn_bg"
-            android:text="Choose"
-            android:textColor="@color/colorWhite" />
 
         <RelativeLayout
             android:layout_width="wrap_content"
@@ -66,11 +57,11 @@
                         android:layout_marginTop="5dp"
                         android:background="@drawable/et_bg"
                         android:fontFamily="sans-serif-light"
+                        android:inputType="textPersonName"
                         android:paddingLeft="15dp"
                         android:paddingRight="15dp"
                         android:textColor="@color/colorWhite"
-                        android:textSize="15sp"
-                        android:inputType="textPersonName"/>
+                        android:textSize="15sp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -94,11 +85,11 @@
                         android:layout_marginTop="5dp"
                         android:background="@drawable/et_bg"
                         android:fontFamily="sans-serif-light"
+                        android:inputType="textPersonName"
                         android:paddingLeft="15dp"
                         android:paddingRight="15dp"
                         android:textColor="@color/colorWhite"
-                        android:textSize="15sp"
-                        android:inputType="textPersonName"/>
+                        android:textSize="15sp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -122,11 +113,11 @@
                         android:layout_marginTop="5dp"
                         android:background="@drawable/et_bg"
                         android:fontFamily="sans-serif-light"
+                        android:inputType="number"
                         android:paddingLeft="15dp"
                         android:paddingRight="15dp"
                         android:textColor="@color/colorWhite"
-                        android:textSize="15sp"
-                        android:inputType="number"/>
+                        android:textSize="15sp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -150,11 +141,11 @@
                         android:layout_marginTop="5dp"
                         android:background="@drawable/et_bg"
                         android:fontFamily="sans-serif-light"
+                        android:inputType="textPersonName"
                         android:paddingLeft="15dp"
                         android:paddingRight="15dp"
                         android:textColor="@color/colorWhite"
-                        android:textSize="15sp"
-                        android:inputType="textPersonName"/>
+                        android:textSize="15sp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -178,11 +169,11 @@
                         android:layout_marginTop="5dp"
                         android:background="@drawable/et_bg"
                         android:fontFamily="sans-serif-light"
+                        android:inputType="textPersonName"
                         android:paddingLeft="15dp"
                         android:paddingRight="15dp"
                         android:textColor="@color/colorWhite"
-                        android:textSize="15sp"
-                        android:inputType="textPersonName"/>
+                        android:textSize="15sp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -206,11 +197,11 @@
                         android:layout_marginTop="5dp"
                         android:background="@drawable/et_bg"
                         android:fontFamily="sans-serif-light"
+                        android:inputType="textPassword"
                         android:paddingLeft="15dp"
                         android:paddingRight="15dp"
                         android:textColor="@color/colorWhite"
-                        android:textSize="15sp"
-                        android:inputType="textPassword"/>
+                        android:textSize="15sp" />
                 </LinearLayout>
 
             </LinearLayout>

@@ -13,7 +13,6 @@ import android.widget.FrameLayout;
 
 import com.example.user.kit.models.Event;
 import com.example.user.kit.models.User;
-import com.example.user.kit.fragments.ChatsFragment;
 import com.example.user.kit.fragments.FeedFragment;
 import com.example.user.kit.fragments.UsersFragment;
 import com.example.user.kit.fragments.ProfileFragment;
@@ -39,7 +38,6 @@ public class MainActivity extends AppCompatActivity {
     private FrameLayout mMainFrame;
     private FeedFragment feedFragment;
     private UsersFragment usersFragment;
-    private ChatsFragment chatsFragment;
     private ProfileFragment profileFragment;
     public String user_name;
     public String user_surname;
@@ -66,7 +64,6 @@ public class MainActivity extends AppCompatActivity {
 
         feedFragment = new FeedFragment();
         usersFragment = new UsersFragment();
-        chatsFragment = new ChatsFragment();
         profileFragment = new ProfileFragment();
 
         setFragment(feedFragment);
@@ -81,9 +78,6 @@ public class MainActivity extends AppCompatActivity {
                         return true;
                     case R.id.nav_users:
                         setFragment(usersFragment);
-                        return true;
-                    case R.id.nav_chats:
-                        setFragment(chatsFragment);
                         return true;
                     case R.id.nav_profile:
                         setFragment(profileFragment);

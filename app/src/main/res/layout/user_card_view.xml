@@ -50,6 +50,7 @@
                 android:layout_marginRight="5dp"
                 android:layout_marginBottom="5dp"
                 app:cardElevation="0dp"
+                user_card_view:cardBackgroundColor="@color/colorBlue"
                 user_card_view:cardCornerRadius="15dp">
 
                 <ImageView
