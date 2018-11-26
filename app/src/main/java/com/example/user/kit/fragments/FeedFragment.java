@@ -1,6 +1,7 @@
 package com.example.user.kit.fragments;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -9,14 +10,17 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.user.kit.Event;
+import com.example.user.kit.activities.DetailActivity;
+import com.example.user.kit.models.Event;
 import com.example.user.kit.R;
 import com.example.user.kit.activities.MainActivity;
 import com.squareup.picasso.Picasso;
@@ -33,10 +37,8 @@ public class FeedFragment extends Fragment {
     private RVAdapter adapter;
     private RecyclerView recyclerView;
     private String MY_LOG = "mylog";
-    private GridLayoutManager manager;
     private EditText editText;
     private ArrayList<Event> searchList = new ArrayList<>();
-    String[] items;
     public FeedFragment() {
         // Required empty public constructor
     }
@@ -54,6 +56,20 @@ public class FeedFragment extends Fragment {
         View view =  inflater.inflate(R.layout.fragment_feed, container, false);
         recyclerView = view.findViewById(R.id.rv);
         editText=(EditText) view.findViewById(R.id.search);
+        /*Button b = (Button)view.findViewById(R.id.button1);
+        b.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View v)
+            {
+                String kek = "Rostyk";
+                Intent intent = new Intent(getActivity(), DetailActivity.class);
+                intent.putExtra("myName",kek);
+                startActivity(intent);
+
+            }
+
+        });
+        */
         initList();
         editText.addTextChangedListener(new TextWatcher() {
             @Override
@@ -84,7 +100,7 @@ public class FeedFragment extends Fragment {
         for(int i = 0;i<feed.eventList.size();i++)
             searchList.add(feed.eventList.get(i));
         for(Event event:feed.eventList){
-            if(!event.getEventName().toLowerCase().contains(textToSearch.toLowerCase())){
+            if(!event.getEventMore().toLowerCase().contains(textToSearch.toLowerCase())){
                 eventsToRemove.add(event);
             }
         }
@@ -105,11 +121,24 @@ public class FeedFragment extends Fragment {
         public RVAdapter(List<Event> events) {
             this.events = events;
         }
+        private final View.OnClickListener onClickListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int itemPosition = recyclerView.getChildLayoutPosition(v);
+                //Log.d(MY_LOG, String.valueOf(itemPosition));
+                Intent intent = new Intent(getActivity(), DetailActivity.class);
+                intent.putExtra("page",events.get(itemPosition).getEventPage());
+                intent.putExtra("name",events.get(itemPosition).getEventName());
+                intent.putExtra("image",events.get(itemPosition).getEventImage());
+                startActivity(intent);
+            }
+        };
         @NonNull
         @Override
         public EventViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
             View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.card_view,viewGroup,false);
             EventViewHolder eventViewHolder = new EventViewHolder(v);
+            v.setOnClickListener(onClickListener);
             return eventViewHolder;
         }
 

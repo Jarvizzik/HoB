@@ -11,8 +11,8 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 
-import com.example.user.kit.Event;
-import com.example.user.kit.User;
+import com.example.user.kit.models.Event;
+import com.example.user.kit.models.User;
 import com.example.user.kit.fragments.ChatsFragment;
 import com.example.user.kit.fragments.FeedFragment;
 import com.example.user.kit.fragments.UsersFragment;
@@ -114,7 +114,6 @@ public class MainActivity extends AppCompatActivity {
                     stringBuilder.append(json_users);
                 }
                 json_users = stringBuilder.toString().trim();
-                System.out.println("DADASDASDAS   " + json_users);
                 JSONObject jsondata= new JSONObject(json_users);
                 JSONArray JA = jsondata.getJSONArray("users");
                 System.out.println(JA);

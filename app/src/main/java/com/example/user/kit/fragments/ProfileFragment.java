@@ -36,19 +36,15 @@ public class ProfileFragment extends Fragment {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_profile, container, false);
         MainActivity user = (MainActivity) getActivity();
-        String name = "  Name: " + user.user_name;
-        String surname = "  Surname: " + user.user_surname;
-        String age = "  Age: " + user.user_age;
-        String city = "  City: " + user.user_city;
+        String name = user.user_name;
+        String surname = user.user_surname;
+        String age = user.user_age;
+        String city =  user.user_city;
         String url = user.user_url;
 
 
         tvName = view.findViewById(R.id.tvName);
-        tvName.setText(name);
-        tvSurname = view.findViewById(R.id.tvSurname);
-        tvSurname.setText(surname);
-        tvAge = view.findViewById(R.id.tvAge);
-        tvAge.setText(age);
+        tvName.setText(name + " " + surname+", "+ age);
         tvCity = view.findViewById(R.id.tvCity);
         tvCity.setText(city);
         imageView = (ImageView) view.findViewById(R.id.imageView);

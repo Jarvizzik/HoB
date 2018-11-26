@@ -18,7 +18,7 @@ import android.widget.TextView;
 
 import com.example.user.kit.R;
 import com.example.user.kit.transformations.RoundedCornersTransform;
-import com.example.user.kit.User;
+import com.example.user.kit.models.User;
 import com.example.user.kit.activities.MainActivity;
 import com.squareup.picasso.Picasso;
 

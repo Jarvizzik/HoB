@@ -13,8 +13,8 @@
         android:layout_width="388dp"
         android:layout_height="wrap_content"
         android:layout_margin="1dp"
-        user_card_view:cardCornerRadius="5dp"
-        user_card_view:cardElevation="2dp"
+        user_card_view:cardCornerRadius="20dp"
+        user_card_view:cardElevation="0dp"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="6dp"
         tools:layout_editor_absoluteY="5dp">
@@ -23,7 +23,8 @@
             android:id="@+id/cRL2"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="1dp">
+            android:layout_margin="1dp"
+            android:background="@drawable/tag_bg">
 
             <TextView
                 android:id="@+id/userName"
@@ -34,7 +35,7 @@
                 android:layout_marginStart="81dp"
                 android:layout_marginTop="21dp"
                 android:text="TextView"
-                android:textColor="@color/design_default_color_primary_dark"
+                android:textColor="@color/colorWhite"
                 android:textSize="22sp"
                 android:textStyle="bold" />
 

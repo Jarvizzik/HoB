@@ -5,7 +5,6 @@
     android:layout_height="match_parent"
     tools:context=".fragments.FeedFragment"
     android:focusableInTouchMode="true">
-
     <!-- TODO: Update blank fragment layout -->
     <EditText
         android:id="@+id/search"
